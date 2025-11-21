@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lost & Found</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Lost & Found Items</h1>
+  <ul id="itemList"></ul>
+
+  <p><a href="post.html">Post a new item</a></p>
+
+  <script>
+    let items = JSON.parse(localStorage.getItem("lostItems")) || [];
+    let list = document.getElementById("itemList");
+    items.forEach(i => {
+      let li = document.createElement("li");
+      li.innerHTML = `<strong>${i.name}</strong><br>${i.desc}`;
+      if(i.img){
+        let img = document.createElement("img");
+        img.src = i.img;
+        img.className = "item-img";
+        li.appendChild(img);
+      }
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
